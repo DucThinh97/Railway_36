@@ -8,20 +8,24 @@ Create table exe1(
 	Full_Name        varchar(50) not null,
 	Birth_Date       date not null,
 	Gender 		     enum('male','female','unknown'),
-	ET_IQ 		     tinyint not null CHECK(ET_IQ >= 0 AND ET_IQ <= 20),
-	ET_Gmath 	     tinyint not null CHECK(ET_Gmath BETWEEN 0 AND 20),
-	ET_English 	     tinyint  null CHECK(ET_English BETWEEN 0 AND 50),
+	ET_IQ 		     tinyint not null check(ET_IQ >= 0 AND ET_IQ <= 20),
+	ET_Gmath 	     tinyint not null check(ET_Gmath BETWEEN 0 AND 20),
+	ET_English 	     tinyint not null check(ET_English BETWEEN 0 AND 50),
 	Training_Class   varchar(50),
 	Evaluation_Notes text
 );
 -- Exercise 2: Data Types
 Create table exe2(
     ID               mediumint auto_increment primary key,
-   `Name`            varchar(50),
+   `Name`            varchar(50) not null,
    `Code`            varchar(5),
     ModifedDate      datetime not null
 );
 -- Exercise 3: Data Types (2)
 Create table exe3(
-    ID               mediumint auto_increment primary key
+    ID               mediumint auto_increment primary key,
+   `Name`            varchar(50) not null,
+    Birthdate        date not null,
+    Gender           enum('male','female','unknown'),
+    IsDeletedFlag    tinyint check (IsDeletedFlag IN (0,1))
 );
