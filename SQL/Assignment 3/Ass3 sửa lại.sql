@@ -262,8 +262,7 @@ VALUES                  (   1,              1),
                         (   1,              3),
                         (   4,              3);
                         
-                        
--- "Testing_System_Assignment_3"
+ -- "Testing_System_Assignment_3"
 -- Question 2: lấy ra tất cả các phòng ban
 SELECT *
 FROM Testing_System_Assignment_3.Department;
@@ -334,10 +333,15 @@ FROM Exam
 WHERE CreateDate < '2019-12-20';
 
 
--- Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"
+-- Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"                       
+DELETE
+FROM Answer
+WHERE QuestionID IN ( SELECT QuestionID
+                        FROM Question
+                       WHERE Content LIKE 'câu hỏi' ) ;   
 DELETE 
-FROM `question`
-WHERE (SUBSTRING_INDEX(Content,' ',2)) LIKE 'câu hỏi';
+FROM Question
+WHERE Content like 'câu hỏi' ;
 
 
 -- Question 14: update thông tin của account có id = 5 thành tên "Nguyễn Bá Lộc" và email thành loc.nguyenba@vti.com.vn
@@ -349,12 +353,5 @@ WHERE  AccountID = 5;
 -- Question 15: update account có id = 5 sẽ thuộc group có id = 4
 UPDATE 		`GroupAccount` 
 SET 		AccountID = 5 
-WHERE 		GroupID = 4;
-
-
-
-
-
-                        
-                        
+WHERE 		GroupID = 4;                       
                         
