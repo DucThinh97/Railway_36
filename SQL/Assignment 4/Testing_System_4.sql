@@ -320,6 +320,19 @@ INNER JOIN department d ON a.DepartmentID = d.DepartmentID
 INNER JOIN position p ON a.PositionID = p.PositionID
 GROUP BY d.DepartmentID, p.PositionID;
 
+-- Question 12: Lấy thông tin chi tiết của câu hỏi bao gồm: thông tin cơ bản của question, loại câu hỏi, ai là người tạo ra câu hỏi, câu trả lời là gì, ...
+SELECT Q.QuestionID, Q.Content, A.FullName, TQ.TypeName AS Author, ANS.Content FROM question Q
+INNER JOIN categoryquestion CQ ON Q.CategoryID = CQ.CategoryID
+INNER JOIN typequestion TQ ON Q.TypeID = TQ.TypeID
+INNER JOIN account A ON A.AccountID = Q.CreatorID
+INNER JOIN Answer AS ANS ON Q.QuestionID = ANS.QuestionID
+ORDER BY Q.QuestionID ASC ;
+
+-- Question 13: Lấy ra số lượng câu hỏi của mỗi loại tự luận hay trắc nghiệm
+SELECT TQ.TypeID, TQ.TypeName, COUNT(Q.TypeID) AS SL FROM question Q
+INNER JOIN typequestion TQ ON Q.TypeID = TQ.TypeID
+GROUP BY Q.TypeID;
+
 
 
 

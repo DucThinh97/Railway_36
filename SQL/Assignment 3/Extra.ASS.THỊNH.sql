@@ -66,24 +66,16 @@ VALUES          (   1,       'English',      'male',         1     ),
  
  -- LẤY DỮ LIỆU TỪ SQL
  -- Question 2: Viết lệnh để lấy ra tất cả các thực tập sinh đã vượt qua bài test đầu vào,nhóm chúng thành các tháng sinh khác nhau
-
-SELECT Month(birth_date),
-       Count(*),
-       Group_concat(full_name) AS danh_sach_ten
-FROM   trainee
-WHERE ET_IQ + ET_Gmath>=20 
-	OR ET_IQ>=8
-	OR ET_Gmath>=8
-	OR ET_English>=18
-GROUP BY Month(birth_date);
--- COUNT, SUM, AVG, MIN, MAX
+SELECT GROUP_CONCAT(Full_Name), MONTH(Birth_Date)
+FROM trainee 
+GROUP BY MONTH(Birth_Date) ;
 
 
 -- Question 3: Viết lệnh để lấy ra thực tập sinh có tên dài nhất, lấy ra các thông tin sau:tên, tuổi, các thông tin cơ bản (như đã được định nghĩa trong table)
 
-select  char_length(full_name),
-(YEAR(NOW()) - Year(birth_date)) as tuoi, full_name from trainee
-WHERE char_length(full_name) = ( select max(char_length (Full_Name)) from trainee ) 
+SELECT  CHAR_LENGTH(full_name),
+(YEAR(NOW()) - Year(birth_date)) AS tuoi, full_name FROM trainee
+WHERE CHAR_LENGTH(full_name) = ( SELECT MAX(CHAR_LENGTH (Full_Name)) FROM trainee ) 
 GROUP BY month(birth_date); 
 
 -- Question 4: Viết lệnh để lấy ra tất cả các thực tập sinh là ET, 1 ET thực tập sinh là những người đã vượt qua bài test đầu vào và thỏa mãn số điểm như sau:

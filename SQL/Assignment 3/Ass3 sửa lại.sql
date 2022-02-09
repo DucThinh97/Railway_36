@@ -297,10 +297,10 @@ WHERE CreateDate < '2019-12-20 00:00:00';
 -- Question 7: Lấy ra ID của question có >= 4 câu trả lời
 SELECT *
 FROM answer;
-SELECT a.QuestionID, count(a.QuestionID) AS SL 
-FROM answer a
-GROUP BY a.QuestionID
-HAVING count(a.QuestionID) >=4;
+SELECT QuestionID, GROUP_CONCAT(answerID SEPARATOR ' ' ) , count(QuestionID) AS SL 
+FROM answer 
+GROUP BY QuestionID
+HAVING count(answerID) >=4;
 
 -- Question 8: Lấy ra các mã đề thi có thời gian thi >= 60 phút và được tạo trước ngày 20/12/2019
 SELECT `Code` 
